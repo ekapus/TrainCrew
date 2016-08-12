@@ -2,7 +2,21 @@ div.body-container {
 margin-top:5em;
 
 }
-
 .countdown-badge{
-    
+font-size:30px;
+padding:.5em;
+}
+.progress-bar{
+font-size:30px;
+line-height:60px;
+}
+.progress{
+height:60px;
+
+}
+.airbrake-initial-test-charge{margin-top:1em;}
+
+.airbrake-initial-test-charge-progress{
+margin-top:1em;
+
 }
