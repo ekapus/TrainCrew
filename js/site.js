@@ -139,7 +139,7 @@ $(".airbrake-initial-test-set").click(function () {
         
         $(".airbrake-initial-test-set").hide();
 
-        var totalSeconds = 10;
+        var totalSeconds = 2;
         brakePipePressure = maxBrakePipePressure - Math.round(generateRandomNumber(0, 5)); // Potential air pressure differences
         percentPerSecond = 100 / totalSeconds;
 
@@ -173,33 +173,11 @@ $(".airbrake-initial-test-confirm").click(function () {
         
         $(".airbrake-initial-test-confirm").hide();
 
-        var totalSeconds = 5;
-        brakePipePressure = brakePipePressure - Math.round(generateRandomNumber(0, 5)); // Potential air pressure differences
-        percentPerSecond = 100 / totalSeconds;
-
-        $(".airbrake-initial-test-set-confirm").show();
-        $(".airbrake-initial-test-set-confirm").removeClass("hidden");
-
-        var secondsElapsed = 0;
-        var countDown = new Countdown({
-            seconds: parseInt(totalSeconds),  // number of seconds to count down
-            onUpdateStatus: function (sec) {
-                var progressBar = $('.airbrake-initial-test-confirm-progress-bar')
-                var percentComplete = secondsElapsed * (percentPerSecond);
-                secondsElapsed++;
-                progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
-                progressBar.text(secondsElapsed);
-            }, // callback for each second
-            onCounterEnd: function () {
-                var progressBar = $('.airbrake-initial-test-confirm-progress-bar')
-                progressBar.css('width', '100% Complete').attr('aria-valuenow', 100);
-                progressBar.text("TEST COMPLETE: " + brakePipePressure + " PSI");
-                $(".step-3").show();
-            } // final action
-        });
-        countDown.start();
-
-        $(".airbrake-initial-test-charge").hide();
+        brakePipePressure = brakePipePressure - Math.round(generateRandomNumber(1, 5)); // Potential air pressure differences
+        $(".airbrake-initial-test-confirm-badge").addClass("alert-success");
+        $(".airbrake-initial-test-confirm-badge").text("BRAKE PRESSURE: " + brakePipePressure + " PSI");
+        $(".airbrake-initial-test-confirm-badge").show();
+        $(".step-4").show();
 
     });
 
