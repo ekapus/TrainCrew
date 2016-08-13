@@ -26,7 +26,8 @@ margin-top:1em;
 }
 
 .alert {
+    text-align:center;
     font-size:30px;
-    line-height:60px;
+
 
 }

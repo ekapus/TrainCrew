@@ -94,18 +94,18 @@ $(document).ready(function () {
 
     });
 
-var maxBrakePipePressure = Math.round(generateRandomNumber(88, 90)); // Potential air pressure range
-var brakePipePressure = maxBrakePipePressure;
+    var maxBrakePipePressure = 90; // Potential air pressure range
+    var brakePipePressure = maxBrakePipePressure;
 
 
     $(".airbrake-initial-test-charge").click(function () {
-        
+
         disable($("#airbrake-initial-test-car-count"));
 
         var totalSeconds = $("#airbrake-initial-test-car-count").val();
         totalSeconds = parseInt(totalSeconds, 10);
         totalSeconds = totalSeconds * 3;
-        
+
         percentPerSecond = 100 / totalSeconds;
 
         $(".airbrake-initial-test-charge-progress").show();
@@ -136,12 +136,12 @@ var brakePipePressure = maxBrakePipePressure;
     });
 
 
-$(".airbrake-initial-test-set").click(function () {
-        
+    $(".airbrake-initial-test-set").click(function () {
+
         $(".airbrake-initial-test-set").hide();
 
         var totalSeconds = 2;
-        brakePipePressure = maxBrakePipePressure - Math.round(generateRandomNumber(0, 3)); // Potential air pressure differences
+        brakePipePressure = maxBrakePipePressure - Math.round(generateRandomNumber(0, 2)); // Potential air pressure differences
         percentPerSecond = 100 / totalSeconds;
 
         $(".airbrake-initial-test-set-progress").show();
@@ -160,7 +160,7 @@ $(".airbrake-initial-test-set").click(function () {
             onCounterEnd: function () {
                 var progressBar = $('.airbrake-initial-test-set-progress-bar')
                 progressBar.css('width', '100% Complete').attr('aria-valuenow', 100);
-                progressBar.text( brakePipePressure + " PSI");
+                progressBar.text(brakePipePressure + " PSI");
                 progressBar.addClass("progress-bar-success");
                 $(".step-3").show();
             } // final action
@@ -171,11 +171,11 @@ $(".airbrake-initial-test-set").click(function () {
 
     });
 
-$(".airbrake-initial-test-confirm").click(function () {
-        
+    $(".airbrake-initial-test-confirm").click(function () {
+
         $(".airbrake-initial-test-confirm").hide();
 
-        brakePipePressure = brakePipePressure - Math.round(generateRandomNumber(1, 5)); // Potential air pressure differences
+        brakePipePressure = brakePipePressure - Math.round(generateRandomNumber(1, 3)); // Potential air pressure differences
         $(".airbrake-initial-test-confirm-badge").addClass("alert-success");
         $(".airbrake-initial-test-confirm-badge").text(brakePipePressure + " PSI");
         $(".airbrake-initial-test-confirm-badge").show();
@@ -184,5 +184,104 @@ $(".airbrake-initial-test-confirm").click(function () {
     });
 
 
+    $(".airbrake-initial-test-inspect").click(function () {
+
+        $(".airbrake-initial-test-inspect").hide();
+        var carsToInspect = $("#airbrake-initial-test-car-count").val();
+        var totalSeconds = parseInt(carsToInspect, 10);
+        totalSeconds = totalSeconds * 4;
+
+        carsPerSecond = carsToInspect / totalSeconds;
+        percentPerSecond = 100 / totalSeconds;
+
+        $(".airbrake-initial-test-inspect-progress").show();
+        $(".airbrake-initial-test-inspect-progress").removeClass("hidden");
+
+        carSuffix = "";
+
+        var carsInspected = 0;
+        var secondsElapsed = 0;
+        var countDown = new Countdown({
+            seconds: parseInt(totalSeconds),  // number of seconds to count down
+            onUpdateStatus: function (sec) {
+                secondsElapsed++;
+                var progressBar = $('.airbrake-initial-test-inspect-progress-bar')
+                var percentComplete = secondsElapsed * percentPerSecond;
+                progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
+                var carsInspectedText = Math.floor(carsInspected);
+                if (carsInspected >= 2) {
+                    carSuffix = "s";
+                }
+                progressBar.text(carsInspectedText + " Car" + carSuffix);
+                carsInspected = carsInspected + .25;
+            }, // callback for each second
+            onCounterEnd: function () {
+                var progressBar = $('.airbrake-initial-test-inspect-progress-bar')
+                progressBar.css('width', '100%').attr('aria-valuenow', 100);
+                progressBar.text(carsToInspect + " Car" + carSuffix);
+                progressBar.addClass("progress-bar-success");
+                $(".step-5").show();
+            } // final action
+        });
+        countDown.start();
+    });
+
+    $(".airbrake-initial-test-release").click(function () {
+
+        $(".airbrake-initial-test-release").hide();
+        $(".airbrake-initial-test-release-badge").addClass("alert-success");
+        $(".airbrake-initial-test-release-badge").text("Brakes Released");
+        $(".airbrake-initial-test-release-badge").show();
+        $(".step-6").show();
+
+    });
+
+    $(".airbrake-initial-test-inspect-release").click(function () {
+
+        $(".airbrake-initial-test-inspect-release").hide();
+        var carsToInspect = $("#airbrake-initial-test-car-count").val();
+        var totalSeconds = parseInt(carsToInspect, 10);
+        totalSeconds = totalSeconds * 4;
+
+        carsPerSecond = carsToInspect / totalSeconds;
+        percentPerSecond = 100 / totalSeconds;
+
+        $(".airbrake-initial-test-inspect-release-progress").show();
+        $(".airbrake-initial-test-inspect-release-progress").removeClass("hidden");
+
+        carSuffix = "";
+
+        var carsInspected = 0;
+        var secondsElapsed = 0;
+        var countDown = new Countdown({
+            seconds: parseInt(totalSeconds),  // number of seconds to count down
+            onUpdateStatus: function (sec) {
+                secondsElapsed++;
+                var progressBar = $('.airbrake-initial-test-inspect-release-progress-bar')
+                var percentComplete = secondsElapsed * percentPerSecond;
+                progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
+                var carsInspectedText = Math.floor(carsInspected);
+                if (carsInspected >= 2) {
+                    carSuffix = "s";
+                }
+                progressBar.text(carsInspectedText + " Car" + carSuffix);
+                carsInspected = carsInspected + .25;
+            }, // callback for each second
+            onCounterEnd: function () {
+                var progressBar = $('.airbrake-initial-test-inspect-release-progress-bar')
+                progressBar.css('width', '100%').attr('aria-valuenow', 100);
+                progressBar.text(carsToInspect + " Car" + carSuffix);
+                progressBar.addClass("progress-bar-success");
+                $(".step-7").show();
+
+        $(".airbrake-initial-test-success-badge").addClass("alert-success");
+        $(".airbrake-initial-test-success-badge").text("Test Successful");
+        $(".airbrake-initial-test-success-badge").show();
+        $(".step-6").show();
+
+            } // final action
+        });
+        countDown.start();
+    });
 
 });
