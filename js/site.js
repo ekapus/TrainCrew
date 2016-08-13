@@ -31,9 +31,25 @@ function PerformCountDownOnBadge(badgeClass) {
         }, // callback for each second
         onCounterEnd: function () {
             $(badgeClass).removeClass("alert-danger");
+            $(badgeClass).addClass("alert-success");
+            PerformBadgeReset(badgeClass,1,seconds);
         } // final action
     });
     countDown.start();
+}
+
+function PerformBadgeReset(badgeClass,seconds,value){
+    var countDown = new Countdown({
+        seconds: seconds,  // number of seconds to count down
+        onUpdateStatus: function (sec) {
+        }, // callback for each second
+        onCounterEnd: function () {
+            $(badgeClass).text(value);
+            $(badgeClass).removeClass("alert-success");
+        } // final action
+    });
+    countDown.start();
+
 }
 
 function Countdown(options) {
