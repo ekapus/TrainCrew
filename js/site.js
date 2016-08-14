@@ -9,6 +9,12 @@ function PlaySound(soundFile, soundDuration) {
     audio.play();
 }
 
+function PlaySoundWithLoop(soundFile, soundDuration) {
+    var audio = new Audio(soundFile);
+    audio.loop = true;
+    audio.play();
+}
+
 function PlaySoundWithCountdown(soundFile, soundDuration, badgeClass) {
     $(badgeClass).addClass("alert-danger");
     $(badgeClass).text(soundDuration);
@@ -91,3 +97,5 @@ function disable(element) {
 function enable(element) {
     element.prop("disabled", false);
 }
+
+

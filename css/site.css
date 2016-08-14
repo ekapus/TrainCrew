@@ -1,33 +1,39 @@
 div.body-container {
-margin-top:5em;
-
+    margin-top: 5em;
 }
-.countdown-badge{
-font-size:30px;
-padding:.5em;
+.countdown-badge {
+    font-size: 30px;
+    padding: .5em;
 }
-.progress-bar{
-font-size:30px;
-line-height:60px;
+.progress-bar {
+    font-size: 30px;
+    line-height: 60px;
 }
-.progress{
-height:60px;
-
-}
-.airbrake-initial-test-charge{margin-top:1em;}
-
-.airbrake-initial-test-charge-progress{
-margin-top:1em;
-
-}
-
-.airbrake-initial-test-confirm-badge{
-    margin-top:1em;
+.progress {
+    height: 60px;
 }
 
 .alert {
-    text-align:center;
-    font-size:30px;
+    text-align: center;
+    font-size: 30px;
+}
 
+.airbrake-initial-test-charge {
+    margin-top: 1em;
+}
+.airbrake-initial-test-charge-progress {
+    margin-top: 1em;
+}
+.airbrake-initial-test-confirm-badge {
+    margin-top: 1em;
+}
 
+.airbrake-intermediate-test-charge {
+    margin-top: 1em;
+}
+.airbrake-intermediate-test-charge-progress {
+    margin-top: 1em;
+}
+.airbrake-intermediate-test-confirm-badge {
+    margin-top: 1em;
 }
