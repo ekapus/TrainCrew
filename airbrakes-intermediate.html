@@ -201,7 +201,8 @@ $(document).ready(function () {
                 progressBar.css('width', '100% Complete').attr('aria-valuenow', 100);
                 progressBar.text(maxBrakePipePressure + " PSI");
                 progressBar.addClass("progress-bar-success");
-                compressorRunAudio.pause();                
+                compressorRunAudio.pause();   
+                PlaySound("/sounds/compressor-end.wav");             
                 $(".step-2").show();
             } // final action
         });

@@ -204,7 +204,9 @@ $(document).ready(function () {
                 progressBar.text(maxBrakePipePressure + " PSI");
                 progressBar.addClass("progress-bar-success");
                 $(".step-2").show();
+                PlaySound("/sounds/compressor-end.wav");
                 compressorRunAudio.pause();
+                
             } // final action
         });
         countDown.start();
