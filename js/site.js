@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 
 
-function PlaySound(soundFile, soundDuration) {
+function PlaySound(soundFile) {
     var audio = new Audio(soundFile);
     audio.play();
 }

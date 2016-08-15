@@ -85,7 +85,7 @@
         </div>
       </li>
       <li class="list-group-item step step-2">
-        <p>Set brakes and hold pressure for 1 minute.</p>
+        <p>Set brakes and hold pressure for 1 minute (15 seconds fast clock).</p>
         <button type="button" class="btn btn-lg btn-default airbrake-initial-test-set">Set Brakes</button>
         <div class="progress airbrake-initial-test-set-progress hidden">
           <div class="progress-bar airbrake-initial-test-set-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
@@ -218,12 +218,14 @@ $(document).ready(function () {
 
         $(".airbrake-initial-test-set").hide();
 
-        var totalSeconds = 2;
+        var totalSeconds = 15;
         brakePipePressure = maxBrakePipePressure - Math.round(generateRandomNumber(0, 2)); // Potential air pressure differences
         percentPerSecond = 100 / totalSeconds;
 
         $(".airbrake-initial-test-set-progress").show();
         $(".airbrake-initial-test-set-progress").removeClass("hidden");
+
+        PlaySound("/sounds/air-purge-4.wav");
 
         var secondsElapsed = 0;
         var countDown = new Countdown({
@@ -307,6 +309,7 @@ $(document).ready(function () {
     $(".airbrake-initial-test-release").click(function () {
 
         $(".airbrake-initial-test-release").hide();
+        PlaySound("/sounds/bleedoff.wav");
         $(".airbrake-initial-test-release-badge").addClass("alert-success");
         $(".airbrake-initial-test-release-badge").text("Brakes Released");
         $(".airbrake-initial-test-release-badge").show();
