@@ -30,6 +30,7 @@ function PlaySoundWithCountdown(soundFile, soundDuration, badgeClass) {
 
 function PerformCountDownOnBadge(badgeClass) {
     var seconds = parseInt($(badgeClass).text());
+    console.log(seconds);
     var countDown = new Countdown({
         seconds: seconds,  // number of seconds to count down
         onUpdateStatus: function (sec) {
@@ -38,13 +39,13 @@ function PerformCountDownOnBadge(badgeClass) {
         onCounterEnd: function () {
             $(badgeClass).removeClass("alert-danger");
             $(badgeClass).addClass("alert-success");
-            PerformBadgeReset(badgeClass,1,seconds);
+            PerformBadgeReset(badgeClass, 1, seconds);
         } // final action
     });
     countDown.start();
 }
 
-function PerformBadgeReset(badgeClass,seconds,value){
+function PerformBadgeReset(badgeClass, seconds, value) {
     var countDown = new Countdown({
         seconds: seconds,  // number of seconds to count down
         onUpdateStatus: function (sec) {
@@ -98,4 +99,12 @@ function enable(element) {
     element.prop("disabled", false);
 }
 
+function passedInspection() {
+    var number = generateRandomNumber(1, 1000);
+    if (number == 666) {
+        return false;
+    } else {
+        return true;
+    }
+}
 

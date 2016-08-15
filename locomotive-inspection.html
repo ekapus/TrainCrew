@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Locomotive Daily Inspection</title>
+
+  <meta property="og:title" content="Train Crew Webapp: Locomotive Daily Inspection" />
+  <meta property="og:description" content="Simulate perfoming a daily locomotive inspection." />
+  <meta property="og:type" content="website" />
+
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/site.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="/">TrainCrew</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="switching.html">Switching</a></li>
+          <li ><a href="handbrakes.html">Handbrakes</a></li>
+          <li><a href="airbrakes.html">Airbrakes</a></li>
+          <li class="active"><a href="locomotive.html">Locomotives</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="about.html">About</a></li>
+        </ul>
+
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container body-container">
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <h1>Locomotive Daily Inspection</h1>
+    <div class="well">
+      <p>Perform this inspection daily on each locomotive before you use it to comply with FRA Reg §229.</p>
+    </div>
+
+    <h2>Top/Cab Inspection</h2>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <p>§229.23 - PERIODIC INSPECTION Examine Form F6180.49A (Blue Card) to ensure all inspections & tests prescribed by
+          Part 229 are current.</p>
+        <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-1">3</span>
+          <button type="button" id="locomotive-inspection-button-step-1" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item ">
+        <p>§229.119 - CABS, FLOORS, PASSAGEWAYS Determine that cab floors and passageways are free of impediments that might
+          cause a tripping/slipping hazard. Cab seats must be properly secured to prevent personal injury.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-2">3</span>
+          <button type="button" id="locomotive-inspection-button-step-2" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.129 - AUDIBLE WARNING DEVICE Operate the horn on the leading locomotive to determine that it functions. When
+          equipped, operate the bell.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-3">2</span>
+          <button type="button" id="locomotive-inspection-button-step-3" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.127 - CAB LIGHTS Cab overhead and instrument lights shall be operative and provide sufficient illumination.
+          Passageways used by the crew shall also be illuminated.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-4">3</span>
+          <button type="button" id="locomotive-inspection-button-step-4" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.117 - SPEED INDICATORS Inspect the speed indicator on the controlling locomotive to determine that it is not
+          damaged. Tests shall be made to determine accuracy after departure.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-5">3</span>
+          <button type="button" id="locomotive-inspection-button-step-5" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.46/47/49/53/59 - BRAKE SYSTEMS Locomotive brakes shall be known that they operate as intended. Test procedures
+          should include the testing of automatic and independent brake valves. Drain water and oil from the reservoir.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-6">3</span>
+          <button type="button" id="locomotive-inspection-button-step-6" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.13 - CONTROL OF LOCOMOTIVE Whenever two or more locomotives are coupled in remote or multiple control, all systems
+          shall respond to control from the cab of the controlling locomotive. (i.e. propulsion, sanders, air brakes, etc.)</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-7">3</span>
+          <button type="button" id="locomotive-inspection-button-step-7" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.135 - EVENT RECORDERS Examine event recorder if accessible to crew members, for evidence of tampering.</p>
+        <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-8">3</span>
+          <button type="button" id="locomotive-inspection-button-step-8" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.41 - PROTECTION - PERSONAL INJURY Exposed moving mechanical parts, relays, switches and high voltage equipment
+          (inside cab & engine room compartment) shall not present undue safety hazards to crew members.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-9">3</span>
+          <button type="button" id="locomotive-inspection-button-step-9" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.43 - EXHAUST & BATTERY GASES Inspect for signs of diesel exhaust, battery gases or other noxious fumes are vented
+          to the outside and not in the cab of the controlling locomotive.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-10">3</span>
+          <button type="button" id="locomotive-inspection-button-step-10" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.101 - ENGINES Temperature and pressure alarms shall be observed to determine that the engine functions properly.
+          A shut down engine shall be tagged with a warning notice.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-11">3</span>
+          <button type="button" id="locomotive-inspection-button-step-11" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.45 - GENERAL CONDITION Inspect to determine that no defects exists that would endanger the safety of the crew,
+          such as insecure or improper function of components, safety appliances, structural defects, etc.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-12">3</span>
+          <button type="button" id="locomotive-inspection-button-step-12" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+    </ul>
+    <h2>Ground/Bottom Inspection</h2>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <p>§229.123 - PILOTS, SNOWPLOWS, ENDPLATES The end in the direction of travel of each lead locomotive must have a pilot
+          plate or snow plow properly secured and be not less than 3 inches nor more than 6 inches from rail.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-13">3</span>
+          <button type="button" id="locomotive-inspection-button-step-13" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.61 - DRAFT SYSTEM Couplers & uncoupling levers must function properly. Visually inspect the exposed components
+          or the draft system for defects. </p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-14">3</span>
+          <button type="button" id="locomotive-inspection-button-step-14" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.89 - JUMPER CABLES Jumper cables may not be broken, chafed, or left hanging with one end free. Jumper receptacles
+          may not have broken terminals or retainer caps.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-15">3</span>
+          <button type="button" id="locomotive-inspection-button-step-15" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.131 - SANDERS Sanders must operate on each locomotive in front of the first powered wheel set in the direction
+          of travel and must be aligned to deposit sand on the rail.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-16">3</span>
+          <button type="button" id="locomotive-inspection-button-step-16" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.125/133 - HEADLIGHTS, AUX. LIGHTS Headlights and dimmer switch must be operative for the lead end of road locomotives
+          & both ends of locomotive in switching service. Aux. lights may not be used in lieu of headlight.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-17">3</span>
+          <button type="button" id="locomotive-inspection-button-step-17" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.55 - PISTON TRAVEL Piston travel must not exceed l 1/2 inches less than the maximum total travel. Total possible
+          piston travel can be acquired from the Blue Card, (F6180.49A). Released brakes shall provide brake shoe clearance.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-18">3</span>
+          <button type="button" id="locomotive-inspection-button-step-18" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.57 - FOUNDATION BRAKE GEAR Inspect brake rigging to ensure that all parts are secured. Brake shoes must align
+          correctly with the wheel and not be overlapped and grooved.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-19">3</span>
+          <button type="button" id="locomotive-inspection-button-step-19" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.75 - WHEELS Inspect wheels for the following conditions:</p>
+        <ul>
+          <li>Flat spot(s)</li>
+          <li>High flange </li>
+          <li>Shelled spot(s)</li>
+          <li>Thin flange</li>
+          <li>Thin rim</li>
+          <li>Gouge or chip in flange</li>
+          <li>Cracks or breaks in flange, rim, plate or hub.</li>
+        </ul>
+        <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-20">3</span>
+          <button type="button" id="locomotive-inspection-button-step-20" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.67/69/71 - TRUCKS Trucks may not be cracked or broken. Conduct walk-around inspection of exposed truck components
+          for cracked, broken or hazardous conditions. Inspect the underside from outside gauge of rail for defective components.
+          No part except wheels and non-metallic sand hoses may be less than 2½ inches from rail.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-21">3</span>
+          <button type="button" id="locomotive-inspection-button-step-21" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.65 - SPRING RIGGINGS Truck springs and rigging must not be broken and be in proper position; and spring safety
+          hangers to be in correct position. Shock absorbers may not be broken or leaking clearly formed droplets of oil
+          or fluid.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-22">3</span>
+          <button type="button" id="locomotive-inspection-button-step-22" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.91 - MOTORS & GENERATORS No traction motor may be cut out. All traction motor cables and cable connections should
+          be damage free, and free from accumulation of oil that may be a hazard.</p>
+          <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-23">3</span>
+          <button type="button" id="locomotive-inspection-button-step-23" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <p>§229.64 - PLAIN BEARING Inspect plain bearing boxes for cracks or damage that might cause loss or contamination of
+          lubricant.
+        </p>
+        <div>
+          <span class="badge countdown-badge locomotive-inspection-badge" id="locomotive-inspection-badge-step-24">3</span>
+          <button type="button" id="locomotive-inspection-button-step-24" class="btn btn-lg btn-default locomotive-inspection-button">Inspect</button>
+        </div>
+      </li>
+
+    </ul>
+
+    <hr />
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+
+
+  </div>
+  <!-- /container -->
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="js/site.js"></script>
+<script>
+  $(document).ready(function () {
+
+    $(".locomotive-inspection-button").click(function () {
+        var buttonID = $(this).attr('id');
+        var button = $("#" + buttonID);
+        var badgeID = "#" + buttonID.replace("button", "badge");
+        var seconds = parseInt($(badgeID).text());
+        disable(button);
+        $(badgeID).addClass("alert-warning");
+        var countDown = new Countdown({
+            seconds: seconds,  // number of seconds to count down
+            onUpdateStatus: function (sec) {
+                $(badgeID).text(sec);
+            }, // callback for each second
+            onCounterEnd: function () {
+                badge = $(badgeID);
+                badge.removeClass("alert-warning");
+                inspectionPassed = passedInspection();
+                if (inspectionPassed) {
+                    badge.addClass("alert-success");
+                    button.addClass("btn-success");
+                    button.text("Inspection Passed");
+                } else {
+                    badge.addClass("alert-danger");
+                    button.addClass("btn-danger");
+                    button.text("Inspection failed: Set locomotive out & fill out defect card.");
+                }
+            } // final action
+        });
+        countDown.start();
+    });
+
+});
+</script>
+</body>
+
+</html>
