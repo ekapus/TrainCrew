@@ -16,7 +16,7 @@ function PlaySoundWithLoop(soundFile, soundDuration) {
 }
 
 function PlaySoundWithCountdown(soundFile, soundDuration, badgeClass) {
-    $(badgeClass).addClass("alert-danger");
+    $(badgeClass).addClass("alert-warning");
     $(badgeClass).text(soundDuration);
     $(badgeClass).show();
     var audio = new Audio(soundFile);
@@ -37,7 +37,7 @@ function PerformCountDownOnBadge(badgeClass) {
             $(badgeClass).text(sec);
         }, // callback for each second
         onCounterEnd: function () {
-            $(badgeClass).removeClass("alert-danger");
+            $(badgeClass).removeClass("alert-warning");
             $(badgeClass).addClass("alert-success");
             PerformBadgeReset(badgeClass, 1, seconds);
         } // final action
