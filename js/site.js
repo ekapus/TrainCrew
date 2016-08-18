@@ -16,7 +16,7 @@ function PlaySoundWithLoop(soundFile, soundDuration) {
 }
 
 function PlaySoundWithCountdown(soundFile, soundDuration, badgeClass) {
-    $(badgeClass).addClass("alert-warning");
+    $(badgeClass).addClass("badge-warning");
     $(badgeClass).text(soundDuration);
     $(badgeClass).show();
     var audio = new Audio(soundFile);
@@ -37,8 +37,8 @@ function PerformCountDownOnBadge(badgeClass) {
             $(badgeClass).text(sec);
         }, // callback for each second
         onCounterEnd: function () {
-            $(badgeClass).removeClass("alert-warning");
-            $(badgeClass).addClass("alert-success");
+            $(badgeClass).removeClass("badge-warning");
+            $(badgeClass).addClass("badge-success");
             PerformBadgeReset(badgeClass, 1, seconds);
         } // final action
     });
@@ -52,7 +52,7 @@ function PerformBadgeReset(badgeClass, seconds, value) {
         }, // callback for each second
         onCounterEnd: function () {
             $(badgeClass).text(value);
-            $(badgeClass).removeClass("alert-success");
+            $(badgeClass).removeClass("badge-success");
         } // final action
     });
     countDown.start();

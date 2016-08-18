@@ -48,3 +48,40 @@ div.body-container {
 .locomotive-inspection-badge{
     float:right;
 }
+
+li.list-group-item button{
+width:100%;
+text-align:left;
+vertical-align: middle;
+}
+
+li.list-group-item button span.badge{
+float:right;
+}
+
+button.btn span.badge {
+  
+  color: #ffffff;
+  background-color: #999999;
+  
+}
+
+button.btn span.badge-error {
+  background-color: #b94a48;
+}
+
+button.btn span.badge-warning {
+  background-color: #f89406;
+}
+
+button.btn span.badge-success {
+  background-color: #468847;
+}
+
+button.btn span.badge-info {
+  background-color: #3a87ad;
+}
+
+button.btn span.badge-inverse {
+  background-color: #333333;
+}
