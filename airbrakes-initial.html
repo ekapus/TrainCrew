@@ -223,7 +223,8 @@ $(document).ready(function () {
         $(".airbrake-initial-test-set").hide();
 
         var totalSeconds = 15;
-        brakePipePressure = maxBrakePipePressure - (20 + Math.round(generateRandomNumber(0, 2)); // Make a 20lb reduction plus Potential air pressure differences
+        brakePipePressure = maxBrakePipePressure - (20 + Math.round(generateRandomNumber(0, 2))); 
+        // Make a 20lb reduction plus Potential air pressure differences
         percentPerSecond = 100 / totalSeconds;
 
         $(".airbrake-initial-test-set-progress").show();
