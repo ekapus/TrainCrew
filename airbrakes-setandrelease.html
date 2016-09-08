@@ -342,9 +342,9 @@ $(document).ready(function () {
                 var carsInspectedText = Math.floor(carsInspected);
                 var carsToGoText = carsToGo - carsInspectedText;
                 if (carsToGoText == 1) {
-                    carSuffix = "s";
+                    carSuffix = "";
                 } else {
-                  carSuffix = "";
+                  carSuffix = "s";
                 }
                 progressBar.text(carsToGoText + " Car" + carSuffix + " To Go");
                 carsInspected = carsInspected + .5;
