@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Set and Release Airbrake Test</title>
+
+
+  <meta property="og:title" content="TrainCrew Webapp: Set and Release Airbrake Test" />
+  <meta property="og:description" content="Simulate performing a set and release airbrake test." />
+  <meta property="og:type" content="website" />
+
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/site.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="/index.html">TrainCrew</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="switching.html">Switching</a></li>
+          <li><a href="handbrakes.html">Handbrakes</a></li>
+          <li class="active"><a href="airbrakes.html">Airbrakes</a></li>
+          <li><a href="locomotive.html">Locomotives</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="about.html">About</a></li>
+        </ul>
+
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container body-container">
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <h1>Set and Release Airbrake Test</h1>
+    <div class="well">
+      <p>To be performed when proper airbrake application needs to be ensured.</p>
+    </div>
+
+    <ul class="list-group">
+      
+      <li class="list-group-item step step-1 ">
+        <p>Enter train length (including locomotives and cabooses).</p>
+        <label for="airbrake-setandrelease-test-car-count">Train Length</label>
+        <div class="input-group input-group-lg col-xs-7">
+          <input name="airbrake-setandrelease-test-car-count" type="number" id="airbrake-setandrelease-test-car-count" class="form-control airbrake-setandrelease-test-car-count"
+            placeholder="number" aria-describedby="number-of-cars">
+          <span class="input-group-addon" id="number-of-cars">cars</span>
+        </div>
+      </li>
+      
+      
+      <li class="list-group-item step step-2">
+        <p>Set brakes.</p>
+        <button type="button" class="btn btn-lg btn-default airbrake-setandrelease-test-set">Set Brakes</button>
+        <div class="progress airbrake-setandrelease-test-set-progress hidden">
+          <div class="progress-bar airbrake-setandrelease-test-set-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+            style="min-width: 2em;">
+            Brakes Applying
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item step step-3">
+        <p>Visually inspect all brakes for application.</p>
+        <button type="button" class="btn btn-lg btn-default airbrake-setandrelease-test-inspect">Inspect</button>
+        <div class="progress airbrake-setandrelease-test-inspect-progress hidden">
+          <div class="progress-bar airbrake-setandrelease-test-inspect-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="100" style="min-width: 5em;">
+            0 Cars Inspected
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item step step-4">
+        <p>Return to locomotive or caboose.</p>
+        <button type="button" class="btn btn-lg btn-default airbrake-setandrelease-test-inspect-return">Return</button>
+        <div class="progress airbrake-setandrelease-test-inspect-return-progress hidden">
+          <div class="progress-bar airbrake-setandrelease-test-inspect-return-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="100" style="min-width: 5em;">
+            0 Cars To Go
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item step step-7">
+        <div class="alert airbrake-setandrelease-test-success-badge"></div>
+      </li>
+    </ul>
+    <hr />
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="airbrakes.html">Back to Airbrakes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index.html">Home</a>
+      </li>
+
+
+  </div>
+  <!-- /container -->
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="js/site.js"></script>
+
+  <script>
+
+    // Useful video for details of brake test: https://www.youtube.com/watch?v=3lSOh-ES-o8
+$(document).ready(function () {
+    $(".step").hide();
+    $(".step-1").show();
+    $(".step-2").show();
+
+
+    disable($(".airbrake-setandrelease-test-set"));
+
+    $(".airbrake-setandrelease-test-car-count").on("change keyup paste", function () {
+        var val = $("#airbrake-setandrelease-test-car-count").val();
+        if (!isNaN(val)) {
+            enable($(".airbrake-setandrelease-test-set"));
+        } else {
+            disable($(".airbrake-setandrelease-test-set"));
+        }
+
+    });
+
+    var maxBrakePipePressure = 90; // Potential air pressure range
+    var brakePipePressure = maxBrakePipePressure;
+
+
+
+
+
+    $(".airbrake-setandrelease-test-charge").click(function () {
+
+        
+
+        var totalSeconds = $("#airbrake-setandrelease-test-car-count").val();
+        totalSeconds = parseInt(totalSeconds, 10);
+        totalSeconds = totalSeconds * 3;
+
+        percentPerSecond = 100 / totalSeconds;
+
+        $(".airbrake-setandrelease-test-charge-progress").show();
+        $(".airbrake-setandrelease-test-charge-progress").removeClass("hidden");
+
+        var compressorRunAudio = new Audio("sounds/compressor-run.wav");
+        compressorRunAudio.loop = true;
+        compressorRunAudio.play();
+
+        var secondsElapsed = 0;
+        var countDown = new Countdown({
+            seconds: parseInt(totalSeconds),  // number of seconds to count down
+            onUpdateStatus: function (sec) {
+                var progressBar = $('.airbrake-setandrelease-test-charge-progress-bar')
+                var percentComplete = secondsElapsed * (percentPerSecond);
+                secondsElapsed++;
+                progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
+                progressBar.text(Math.round(percentComplete * (maxBrakePipePressure / 100)) + " PSI");
+            }, // callback for each second
+            onCounterEnd: function () {
+                var progressBar = $('.airbrake-setandrelease-test-charge-progress-bar')
+                progressBar.css('width', '100% Complete').attr('aria-valuenow', 100);
+                progressBar.text(maxBrakePipePressure + " PSI");
+                progressBar.addClass("progress-bar-success");
+                $(".step-2").show();
+                PlaySound("/sounds/compressor-end.wav");
+                compressorRunAudio.pause();
+                
+            } // final action
+        });
+        countDown.start();
+
+        $(".airbrake-setandrelease-test-charge").hide();
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $(".airbrake-setandrelease-test-set").click(function () {
+
+        $(".airbrake-setandrelease-test-set").hide();
+        disable($("#airbrake-setandrelease-test-car-count"));
+
+        var totalSeconds = $("#airbrake-setandrelease-test-car-count").val();
+        totalSeconds = parseInt(totalSeconds, 10);
+        totalSeconds = totalSeconds/5;
+        totalSeconds = Math.ceil(totalSeconds);
+
+        var progressBar = $('.airbrake-setandrelease-test-set-progress-bar')
+       
+        // Make a 20lb reduction plus Potential air pressure differences
+        percentPerSecond = 100 / totalSeconds;
+        progressBar.text("Brakes Applying");
+        
+        $(".airbrake-setandrelease-test-set-progress").show();
+        $(".airbrake-setandrelease-test-set-progress").removeClass("hidden");
+
+        PlaySound("/sounds/air-purge-4.wav");
+
+        var secondsElapsed = 0;
+        var countDown = new Countdown({
+            seconds: parseInt(totalSeconds),  // number of seconds to count down
+            onUpdateStatus: function (sec) {
+                var progressBar = $('.airbrake-setandrelease-test-set-progress-bar')
+                var percentComplete = secondsElapsed * (percentPerSecond);
+                secondsElapsed++;
+                progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
+            }, // callback for each second
+            onCounterEnd: function () {
+                var progressBar = $('.airbrake-setandrelease-test-set-progress-bar')
+                progressBar.css('width', '100% Complete').attr('aria-valuenow', 100);
+                progressBar.text("Brakes Applied");
+                progressBar.addClass("progress-bar-success");
+                $(".step-3").show();
+            } // final action
+        });
+        countDown.start();
+
+        $(".airbrake-setandrelease-test-charge").hide();
+
+    });
+
+
+    $(".airbrake-setandrelease-test-inspect").click(function () {
+
+        $(".airbrake-setandrelease-test-inspect").hide();
+        var carsToInspect = $("#airbrake-setandrelease-test-car-count").val();
+        var totalSeconds = parseInt(carsToInspect, 10);
+        totalSeconds = totalSeconds * 4;
+
+        carsPerSecond = carsToInspect / totalSeconds;
+        percentPerSecond = 100 / totalSeconds;
+
+
+        $(".airbrake-setandrelease-test-inspect-progress").show();
+        $(".airbrake-setandrelease-test-inspect-progress").removeClass("hidden");
+
+        carSuffix = "";
+
+        var carsInspected = 0;
+        var secondsElapsed = 0;
+        var countDown = new Countdown({
+            seconds: parseInt(totalSeconds),  // number of seconds to count down
+            onUpdateStatus: function (sec) {
+                secondsElapsed++;
+                var progressBar = $('.airbrake-setandrelease-test-inspect-progress-bar')
+                var percentComplete = secondsElapsed * percentPerSecond;
+                progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
+                var carsInspectedText = Math.floor(carsInspected);
+                if (carsInspectedText == 1) {
+                    carSuffix = "";
+                } else {
+                    carSuffix = "s";
+                }
+                progressBar.text(carsInspectedText + " Car" + carSuffix);
+                carsInspected = carsInspected + .25;
+            }, // callback for each second
+            onCounterEnd: function () {
+                var progressBar = $('.airbrake-setandrelease-test-inspect-progress-bar')
+                progressBar.css('width', '100%').attr('aria-valuenow', 100);
+                progressBar.text(carsToInspect + " Car" + carSuffix);
+                progressBar.addClass("progress-bar-success");
+                $(".step-4").show();
+            } // final action
+        });
+        countDown.start();
+    });
+
+
+    $(".airbrake-setandrelease-test-inspect-return").click(function () {
+
+        $(".airbrake-setandrelease-test-inspect-return").hide();
+        var carsToInspect = $("#airbrake-setandrelease-test-car-count").val();
+        var totalSeconds = parseInt(carsToInspect, 10);
+        totalSeconds = totalSeconds * 2;
+
+        carsPerSecond = carsToInspect / totalSeconds;
+        percentPerSecond = 100 / totalSeconds;
+
+        $(".airbrake-setandrelease-test-inspect-return-progress").show();
+        $(".airbrake-setandrelease-test-inspect-return-progress").removeClass("hidden");
+
+        carSuffix = "";
+
+        var carsInspected = 0;
+        var secondsElapsed = 0;
+        var carsToGo = carsToInspect;
+        var countDown = new Countdown({
+            seconds: parseInt(totalSeconds),  // number of seconds to count down
+            onUpdateStatus: function (sec) {
+                secondsElapsed++;
+                var progressBar = $('.airbrake-setandrelease-test-inspect-return-progress-bar')
+                var percentComplete = secondsElapsed * percentPerSecond;
+                progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
+                var carsInspectedText = Math.floor(carsInspected);
+                var carsToGoText = carsToGo - carsInspectedText;
+                if (carsToGoText == 1) {
+                    carSuffix = "s";
+                } else {
+                  carSuffix = "";
+                }
+                progressBar.text(carsToGoText + " Car" + carSuffix + " To Go");
+                carsInspected = carsInspected + .5;
+            }, // callback for each second
+            onCounterEnd: function () {
+                var progressBar = $('.airbrake-setandrelease-test-inspect-return-progress-bar')
+                progressBar.css('width', '100%').attr('aria-valuenow', 100);
+                progressBar.text("Welcome Back");
+                progressBar.addClass("progress-bar-success");
+                $(".step-7").show();
+
+        $(".airbrake-setandrelease-test-success-badge").addClass("alert-success");
+        $(".airbrake-setandrelease-test-success-badge").text("Test Successful");
+        $(".airbrake-setandrelease-test-success-badge").show();
+        $(".step-6").show();
+
+            } // final action
+        });
+        countDown.start();
+    });
+
+});
+</script>
+
+</body>
+
+</html>
