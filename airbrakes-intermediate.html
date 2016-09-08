@@ -289,8 +289,10 @@ $(document).ready(function () {
                 var percentComplete = secondsElapsed * percentPerSecond;
                 progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
                 var carsInspectedText = Math.floor(carsInspected);
-                if (carsInspected >= 2) {
-                    carSuffix = "s";
+                if (carsInspectedText == 1) {
+                  carSuffix = "";
+                } else {
+                  carSuffix = "s";
                 }
                 progressBar.text(carsInspectedText + " Car" + carSuffix);
                 carsInspected = carsInspected + .25;
@@ -342,8 +344,10 @@ $(document).ready(function () {
                 var percentComplete = secondsElapsed * percentPerSecond;
                 progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
                 var carsInspectedText = Math.floor(carsInspected);
-                if (carsInspected >= 2) {
-                    carSuffix = "s";
+                if (carsInspectedText == 1) {
+                  carSuffix = "";
+                } else {
+                  carSuffix = "s";
                 }
                 progressBar.text(carsInspectedText + " Car" + carSuffix);
                 carsInspected = carsInspected + .25;
