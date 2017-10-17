@@ -23,7 +23,7 @@ div.body-container {
     line-height: 60px;
 }
 .progress {
-    height: 60px;
+    height: 100%;
 }
 
 .alert {

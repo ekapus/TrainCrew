@@ -2,8 +2,6 @@ $(document).ready(function () {
     $(".hidden").hide();
 });
 
-
-
 function PlaySound(soundFile) {
     var audio = new Audio(soundFile);
     audio.play();
@@ -108,3 +106,11 @@ function passedInspection() {
     }
 }
 
+function decideFailure(chance){
+    var target = generateRandomNumber(0, 1);
+    var failure = false;
+    if(target <= chance){
+      failure = true;
+    }
+    return failure;
+  }
