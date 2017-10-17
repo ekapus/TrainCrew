@@ -250,7 +250,7 @@ $(document).ready(function () {
     var maxBrakePipePressure = 90; // Potential air pressure range
     var brakePipePressure = maxBrakePipePressure;
 
-  // -----------------------------------------------
+  // -------------------
   // Step 1: Pump up the air to 90PSI
   
     $(".step-1-button").click(function () {
@@ -272,7 +272,7 @@ $(document).ready(function () {
         compressorRunAudio.loop = true;
         compressorRunAudio.play();
 
-        console.log("----------------------------------")
+        console.log("-------------------")
         console.log("Step 1: Pump up the air to 90PSI")
 
 
@@ -304,7 +304,7 @@ $(document).ready(function () {
         console.log("Step 1: Complete")
     });
 
-  // -----------------------------------------------
+  // -------------------
   // Step 2: Set brakes and hold pressure for 1 minute (15s)
 
     $(".step-2-button").click(function () {
@@ -320,7 +320,7 @@ $(document).ready(function () {
         // failureChance = .1; // Train will not hold air, this is not a likely condition
         // failureChance = 0; // Never fail, for testing
         // failureChance = 1; // Always fail, for testing
-        console.log("----------------------------------")
+        console.log("-------------------")
         console.log("Step 2: Set and hold for 1 minute")
 
 
@@ -470,6 +470,8 @@ $(document).ready(function () {
             } // final action
         });
         countDown.start();
+
+        console.log("Step 2 Failure State: Complete");
     });
 
 
@@ -477,7 +479,7 @@ $(document).ready(function () {
     $(".step-3-button").click(function () {
 
         // Air pressure at rear must be within 5lbs of the head end after 60 seconds.
-        console.log("----------------------------------")
+        console.log("-------------------")
         console.log("Step 3: Air pressure at rear must be within 5lbs of the head end after 60 seconds.")
 
         $(".step-3-button").hide();
@@ -514,7 +516,7 @@ $(document).ready(function () {
           $(".step-3-fail").show();
       }
         
-
+      console.log("Step 3: Complete");
     });
 
     $(".step-3-fail-button").click(function () {
@@ -595,11 +597,12 @@ $(document).ready(function () {
             } // final action
         });
         countDown.start();
+        console.log("Step 3 Failure State: Complete");
     });
 
     $(".step-4-button").click(function () {
 
-        console.log("----------------------------------");
+        console.log("-------------------");
         console.log("Step 4: Visually inspect all brakes for application.");
 
 
@@ -675,12 +678,13 @@ $(document).ready(function () {
             } // final action
         });
         countDown.start();
+        console.log("Step 4: Complete");
     });
     
     
 
     $(".step-5-button").click(function () {
-        console.log("----------------------------------");
+        console.log("-------------------");
         console.log("Step 5: Release brakes");
 
         $(".airbrake-initial-test-release").hide();
@@ -690,12 +694,12 @@ $(document).ready(function () {
         $(".step-5-badge").show();
         $(".step-6").show();
         $(".airbrake-initial-test-charge-progress").hide();
-
+        console.log("Step 5: Complete");
     });
 
     $(".step-6-button").click(function () {
 
-        console.log("----------------------------------");
+        console.log("-------------------");
         console.log("Step 6: Inspect brake release");
 
         $(".step-6-button").hide();
@@ -774,6 +778,7 @@ $(document).ready(function () {
             } // final action
         });
         countDown.start();
+        console.log("Step 6: Complete");
     });
 
 });
