@@ -227,6 +227,9 @@ $(document).ready(function () {
     $(".step-1").show();
 
     var pressureModifier = 0;
+    
+    $(".airbrake-initial-test-confirm-badge").hide();
+    $(".step-5-badge").hide();
 
     disable($(".airbrake-initial-test-charge"));
 
@@ -333,7 +336,7 @@ $(document).ready(function () {
         // Calculate pressure at end of test time (including drop that caused the failure)
         var naturalBrakePipeDrop = Math.round(generateRandomNumber(0, 2)); 
         var brakeApplicationDrop = 20;
-        brakePipePressure = maxBrakePipePressure - naturalBrakePipeDrop;
+        brakePipePressure = maxBrakePipePressure - naturalBrakePipeDrop - brakeApplicationDrop;
         var finalBrakePipePressure = brakePipePressure - pressureModifier;
         var safeBrakePipePressure = brakePipePressure-5;
         percentPerSecond = 100 / totalSeconds;
@@ -477,8 +480,8 @@ $(document).ready(function () {
         console.log("----------------------------------")
         console.log("Step 3: Air pressure at rear must be within 5lbs of the head end after 60 seconds.")
 
-
-        $(".airbrake-initial-test-confirm").hide();
+        $(".step-3-button").hide();
+        
 
         var failureChance = generateRandomNumber(0, .1); // decimal (.0 - 1.0) chance pressure will be too low
         // failureChance = .1; // Train will not hold air, this is a slightly more likely condition
@@ -665,7 +668,7 @@ $(document).ready(function () {
                   $(".step-4-resolve").show();
                 } else {
                   progressBar.css('width', '100%').attr('aria-valuenow', 100);
-                  progressBar.text(carsToInspect + " Car" + carSuffix);
+                  progressBar.text("Completed");
                   progressBar.addClass("progress-bar-success");
                   $(".step-5").show();
                 }
@@ -682,9 +685,9 @@ $(document).ready(function () {
 
         $(".airbrake-initial-test-release").hide();
         PlaySound("sounds/bleedoff.wav");
-        $(".airbrake-initial-test-release-badge").addClass("alert-success");
-        $(".airbrake-initial-test-release-badge").text("Brakes Released");
-        $(".airbrake-initial-test-release-badge").show();
+        $(".step-5-badge").addClass("alert-success");
+        $(".step-5-badge").text("Brakes Released");
+        $(".step-5-badge").show();
         $(".step-6").show();
         $(".airbrake-initial-test-charge-progress").hide();
 
@@ -760,7 +763,7 @@ $(document).ready(function () {
                   $(".step-6-resolve").show();
                 } else {
                   progressBar.css('width', '100%').attr('aria-valuenow', 100);
-                  progressBar.text(carsToInspect + " Car" + carSuffix);
+                  progressBar.text("Completed");
                   progressBar.addClass("progress-bar-success");
                   $(".step-7").show();
               
