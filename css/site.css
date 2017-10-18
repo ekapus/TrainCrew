@@ -32,15 +32,21 @@ div.body-container {
 }
 
 
-.airbrake-initial-test-charge {
+.airbrake-initial-test-charge, .airbrake-continuity-test-charge {
     margin-top: 1em;
 }
-.airbrake-initial-test-charge-progress {
+.airbrake-initial-test-charge-progress, .airbrake-continuity-test-charge-progress {
     margin-top: 1em;
 }
-.airbrake-initial-test-confirm-badge {
+.airbrake-initial-test-confirm-badge, .airbrake-continuity-test-confirm-badge {
     margin-top: 1em;
 }
+
+
+.airbrake-continuity-test-set-inspect{
+    margin-top: 1em;
+}
+
 
 .airbrake-intermediate-test-charge {
     margin-top: 1em;
