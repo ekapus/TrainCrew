@@ -252,11 +252,10 @@ $(document).ready(function () {
 
         disable($("#car-count"));
 
-        var totalSeconds = $("#car-count").val();
-        totalSeconds = parseInt(totalSeconds, 10);
-        totalSeconds = totalSeconds * 3;
-
-        totalSeconds = 1; // Set totalseconds to 1 for testing.
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 12 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
         percentPerSecond = 100 / totalSeconds;
 
@@ -307,7 +306,8 @@ $(document).ready(function () {
         $(".step-2-button").hide();
 
         // Determine test time length
-        var totalSeconds = 15; 
+        // 1 minute @ fast clock time
+        var totalSeconds = 60 * FAST_CLOCK_FACTOR;
         // totalSeconds = 1; // Go quick, for testing;
 
         // Determine the likelihood of a failure
@@ -317,7 +317,6 @@ $(document).ready(function () {
         // failureChance = 1; // Always fail, for testing
         console.log("-------------------")
         console.log("Step 2: Set and hold for 1 minute")
-
 
         // Create the failure
         pressureModifier = 0;
@@ -392,11 +391,13 @@ $(document).ready(function () {
 
         $(".airbrake-initial-test-inspect").hide();
         $(".step-2-fail-button").hide();
-        var carsToInspect = $("#car-count").val();
-        var totalSeconds = parseInt(carsToInspect, 10);
-        totalSeconds = totalSeconds * 4;
+        
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 30 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
-        carsPerSecond = carsToInspect / totalSeconds;
+        carsPerSecond = carCount / totalSeconds;
         percentPerSecond = 100 / totalSeconds;
 
         $(".airbrake-initial-test-set-inspect-progress").show();
@@ -405,7 +406,7 @@ $(document).ready(function () {
         carSuffix = "";
 
         // Which car is leaking?
-        var defectCar = Math.round(generateRandomNumber(1, carsToInspect));
+        var defectCar = Math.round(generateRandomNumber(1, carCount));
         console.log("Step 2 Failure State: defectCar=" + defectCar);
 
         var carsInspected = 0;
@@ -457,7 +458,7 @@ $(document).ready(function () {
 
                 } else {
                   progressBar.css('width', '100%').attr('aria-valuenow', 100);
-                  progressBar.text(carsToInspect + " Car" + carSuffix);
+                  progressBar.text(carCount + " Car" + carSuffix);
                   progressBar.addClass("progress-bar-success");
                   $(".step-3").show();
                 }
@@ -517,13 +518,14 @@ $(document).ready(function () {
 
         console.log("Step 3 Failure State: Too much of a pressure drop");
 
-        // $(".airbrake-initial-test-inspect").hide();
         $(".step-3-fail-button").hide();
-        var carsToInspect = $("#car-count").val();
-        var totalSeconds = parseInt(carsToInspect, 10);
-        totalSeconds = totalSeconds * 4;
+        
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 30 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
-        carsPerSecond = carsToInspect / totalSeconds;
+        carsPerSecond = carCount / totalSeconds;
         percentPerSecond = 100 / totalSeconds;
 
         $(".step-3-fail-progress").show();
@@ -532,7 +534,7 @@ $(document).ready(function () {
         carSuffix = "";
 
         // Which car is leaking?
-        var defectCar = Math.round(generateRandomNumber(1, carsToInspect));
+        var defectCar = Math.round(generateRandomNumber(1, carCount));
         console.log("Step 3 Failure State: defectCar=" + defectCar);
 
         var carsInspected = 0;
@@ -584,7 +586,7 @@ $(document).ready(function () {
 
                 } else {
                   progressBar.css('width', '100%').attr('aria-valuenow', 100);
-                  progressBar.text(carsToInspect + " Car" + carSuffix);
+                  progressBar.text(carCount + " Car" + carSuffix);
                   progressBar.addClass("progress-bar-success");
                   $(".step-4").show();
                 }
@@ -601,11 +603,13 @@ $(document).ready(function () {
 
 
         $(".airbrake-initial-test-inspect").hide();
-        var carsToInspect = $("#car-count").val();
-        var totalSeconds = parseInt(carsToInspect, 10);
-        totalSeconds = totalSeconds * 4;
+        
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 15 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
-        carsPerSecond = carsToInspect / totalSeconds;
+        carsPerSecond = carCount / totalSeconds;
         percentPerSecond = 100 / totalSeconds;
 
         $(".step-4-progress").show();
@@ -621,7 +625,7 @@ $(document).ready(function () {
          
          var defectCar = 0;
          if(decideFailure(failureChance)){
-          defectCar = Math.round(generateRandomNumber(1, carsToInspect));
+          defectCar = Math.round(generateRandomNumber(1, carCount));
           console.log("Step 4: Failure decided");
           console.log("Step 4: failureChance="+ failureChance);
           console.log("Step 4: defectCar= "+ defectCar);
@@ -697,11 +701,13 @@ $(document).ready(function () {
         console.log("Step 6: Inspect brake release");
 
         $(".step-6-button").hide();
-        var carsToInspect = $("#car-count").val();
-        var totalSeconds = parseInt(carsToInspect, 10);
-        totalSeconds = totalSeconds * 4;
 
-        carsPerSecond = carsToInspect / totalSeconds;
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 15 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
+
+        carsPerSecond = carCount / totalSeconds;
         percentPerSecond = 100 / totalSeconds;
 
         $(".step-6-progress").show();
@@ -717,7 +723,7 @@ $(document).ready(function () {
          
          var defectCar = 0;
          if(decideFailure(failureChance)){
-          defectCar = Math.round(generateRandomNumber(1, carsToInspect));
+          defectCar = Math.round(generateRandomNumber(1, carCount));
           console.log("Step 6: Failure decided");
           console.log("Step 6: failureChance="+ failureChance);
           console.log("Step 6: defectCar= "+ defectCar);

@@ -205,12 +205,12 @@ $(document).ready(function () {
         console.log("-------------------")
         console.log("Step 1: Pump up the air to 90PSI")
 
-
         disable($("#car-count"));
 
-        var totalSeconds = $("#car-count").val();
-        totalSeconds = parseInt(totalSeconds, 10);
-        totalSeconds = totalSeconds * 3;
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 12 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
         percentPerSecond = 100 / totalSeconds;
 
@@ -251,14 +251,12 @@ $(document).ready(function () {
 // -------------------
   // Step 2: Set brakes and hold pressure for 1 minute (15s)
 
-  $(".step-2-button").click(function () {
+    $(".step-2-button").click(function () {
     
             $(".step-2-button").hide();
             $(".step-2-badge").hide();
     
-
-            // Determine test time length
-            var totalSeconds = 15; 
+            var totalSeconds = 60 * FAST_CLOCK_FACTOR;
             // totalSeconds = 1; // Go quick, for testing;
     
             // Determine the likelihood of a failure
@@ -341,11 +339,12 @@ $(document).ready(function () {
     
             console.log("Step 2 Failure State: Could Not Hold Air");
     
-            
             $(".step-2-fail-button").hide();
-            var carsToInspect = $("#car-count").val();
-            var totalSeconds = parseInt(carsToInspect, 10);
-            totalSeconds = totalSeconds * 4;
+            
+            var carCount = $("#car-count").val();
+            var totalCars = parseInt(carCount, 10);
+            var secondsPerCar = 30 * FAST_CLOCK_FACTOR;
+            var totalSeconds = totalCars * secondsPerCar;
     
             carsPerSecond = carsToInspect / totalSeconds;
             percentPerSecond = 100 / totalSeconds;
@@ -463,15 +462,16 @@ $(document).ready(function () {
                 console.log("Step 3: Complete");
               });
 
-              $(".step-3-fail-button").click(function () {
+       $(".step-3-fail-button").click(function () {
 
         console.log("Step 3 Failure State: Too much of a pressure drop");
 
-        // $(".airbrake-initial-test-inspect").hide();
         $(".step-3-fail-button").hide();
-        var carsToInspect = $("#car-count").val();
-        var totalSeconds = parseInt(carsToInspect, 10);
-        totalSeconds = totalSeconds * 4;
+
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 30 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
         carsPerSecond = carsToInspect / totalSeconds;
         percentPerSecond = 100 / totalSeconds;
@@ -558,9 +558,11 @@ $(document).ready(function () {
     $(".airbrake-intermediate-test-inspect-release").click(function () {
 
         $(".airbrake-intermediate-test-inspect-release").hide();
-        var carsToInspect = $("#car-count").val();
-        var totalSeconds = parseInt(carsToInspect, 10);
-        totalSeconds = totalSeconds * 4;
+
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 12 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
         carsPerSecond = carsToInspect / totalSeconds;
         percentPerSecond = 100 / totalSeconds;

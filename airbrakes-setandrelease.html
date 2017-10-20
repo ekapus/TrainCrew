@@ -170,11 +170,10 @@ $(document).ready(function () {
 
     $(".airbrake-setandrelease-test-charge").click(function () {
 
-        
-
-        var totalSeconds = $("#car-count").val();
-        totalSeconds = parseInt(totalSeconds, 10);
-        totalSeconds = totalSeconds * 3;
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 12 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
         percentPerSecond = 100 / totalSeconds;
 
@@ -219,7 +218,7 @@ $(document).ready(function () {
 
         var totalSeconds = $("#car-count").val();
         totalSeconds = parseInt(totalSeconds, 10);
-        totalSeconds = totalSeconds/5;
+        totalSeconds = totalSeconds * FAST_CLOCK_FACTOR;
         totalSeconds = Math.ceil(totalSeconds);
 
         var progressBar = $('.airbrake-setandrelease-test-set-progress-bar')
@@ -263,11 +262,12 @@ $(document).ready(function () {
         console.log("-------------------");
         console.log("Step 3: Visually inspect all brakes for application.");
 
-
         $(".airbrake-setandrelease-test-inspect").hide();
-        var carsToInspect = $("#car-count").val();
-        var totalSeconds = parseInt(carsToInspect, 10);
-        totalSeconds = totalSeconds * 4;
+
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 12 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
         carsPerSecond = carsToInspect / totalSeconds;
         percentPerSecond = 100 / totalSeconds;
@@ -349,9 +349,11 @@ $(document).ready(function () {
     $(".airbrake-setandrelease-test-inspect-return").click(function () {
 
         $(".airbrake-setandrelease-test-inspect-return").hide();
-        var carsToInspect = $("#car-count").val();
-        var totalSeconds = parseInt(carsToInspect, 10);
-        totalSeconds = totalSeconds * 2;
+        
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 8 * FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
         carsPerSecond = carsToInspect / totalSeconds;
         percentPerSecond = 100 / totalSeconds;

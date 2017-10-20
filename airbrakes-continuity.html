@@ -200,11 +200,12 @@ $(document).ready(function () {
         $(".step-1-fail-button").hide();
         $(".train-length-form").hide();
 
-        var carsToInspect = $("#car-count").val();
-        var totalSeconds = parseInt(carsToInspect, 10);
-        totalSeconds = totalSeconds * 4;
+        var carCount = $("#car-count").val();
+        var totalCars = parseInt(carCount, 10);
+        var secondsPerCar = 30*FAST_CLOCK_FACTOR;
+        var totalSeconds = totalCars * secondsPerCar;
 
-        carsPerSecond = carsToInspect / totalSeconds;
+        carsPerSecond = carCount / totalSeconds;
         percentPerSecond = 100 / totalSeconds;
 
         $(".airbrake-continuity-test-set-inspect-progress").show();
@@ -213,7 +214,7 @@ $(document).ready(function () {
         carSuffix = "";
 
         // Which car is leaking?
-        var defectCar = Math.round(generateRandomNumber(1, carsToInspect));
+        var defectCar = Math.round(generateRandomNumber(1, carCount));
         console.log("Step 1 Failure State: defectCar=" + defectCar);
 
         var carsInspected = 0;
@@ -265,7 +266,7 @@ $(document).ready(function () {
 
                 } else {
                   progressBar.css('width', '100%').attr('aria-valuenow', 100);
-                  progressBar.text(carsToInspect + " Car" + carSuffix);
+                  progressBar.text(carCount + " Car" + carSuffix);
                   progressBar.addClass("progress-bar-success");
                   $(".step-3").show();
                 }
