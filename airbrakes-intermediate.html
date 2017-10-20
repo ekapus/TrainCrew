@@ -265,7 +265,7 @@ $(document).ready(function () {
             // totalSeconds = 1; // Go quick, for testing;
     
             // Determine the likelihood of a failure
-            var failureChance = generateRandomNumber(0, .1); // decimal (.0 - 1.0) chance pressure will be too low
+            var failureChance = generateRandomNumber(0, MAX_AIRBRAKE_FAILURE_RATE); // decimal (.0 - 1.0) chance pressure will be too low
             // failureChance = .1; // Train will not hold air, this is not a likely condition
             // failureChance = 0; // Never fail, for testing
             // failureChance = 1; // Always fail, for testing
@@ -432,7 +432,7 @@ $(document).ready(function () {
                   $(".step-3-button").hide();
                   
           
-                  var failureChance = generateRandomNumber(0, .1); // decimal (.0 - 1.0) chance pressure will be too low
+                  var failureChance = generateRandomNumber(0, MAX_AIRBRAKE_FAILURE_RATE); // decimal (.0 - 1.0) chance pressure will be too low
                   // failureChance = .1; // Train will not hold air, this is a slightly more likely condition
                   // failureChance = 0; // Never fail, for testing
                   // failureChance = 1; // Always fail, for testing

@@ -298,7 +298,7 @@ $(document).ready(function () {
         carSuffix = "";
 
         // Lets see if a car failed to apply
-        var failureChance = generateRandomNumber(0, .1); // decimal (.0 - 1.0) chance a car has a kicker
+        var failureChance = generateRandomNumber(0, MAX_AIRBRAKE_FAILURE_RATE); // decimal (.0 - 1.0) chance a car has a kicker
         // failureChance = .1; // There is a car with brakes that won't apply
         // failureChance = 0; // Never fail, for testing
         // failureChance = 1; // Always fail, for testing
