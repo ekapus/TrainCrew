@@ -114,3 +114,7 @@ function decideFailure(chance){
     }
     return failure;
   }
+
+
+// Make computations based on settings from config.js
+var FAST_CLOCK_SECONDS = 60*(1/FAST_CLOCK_SPEED);
