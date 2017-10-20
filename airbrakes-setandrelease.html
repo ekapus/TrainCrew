@@ -71,9 +71,9 @@
       
       <li class="list-group-item step step-1 ">
         <p>Enter train length (including locomotives and cabooses).</p>
-        <label for="airbrake-setandrelease-test-car-count">Train Length</label>
+        <label for="car-count">Train Length</label>
         <div class="input-group input-group-lg col-xs-7">
-          <input name="airbrake-setandrelease-test-car-count" type="number" id="airbrake-setandrelease-test-car-count" class="form-control airbrake-setandrelease-test-car-count"
+          <input name="car-count" type="number" id="car-count" class="form-control car-count"
             placeholder="number" aria-describedby="number-of-cars">
           <span class="input-group-addon" id="number-of-cars">cars</span>
         </div>
@@ -154,8 +154,8 @@ $(document).ready(function () {
 
     disable($(".airbrake-setandrelease-test-set"));
 
-    $(".airbrake-setandrelease-test-car-count").on("change keyup paste", function () {
-        var val = $("#airbrake-setandrelease-test-car-count").val();
+    $(".car-count").on("change keyup paste", function () {
+        var val = $("#car-count").val();
         if (!isNaN(val)) {
             enable($(".airbrake-setandrelease-test-set"));
         } else {
@@ -175,7 +175,7 @@ $(document).ready(function () {
 
         
 
-        var totalSeconds = $("#airbrake-setandrelease-test-car-count").val();
+        var totalSeconds = $("#car-count").val();
         totalSeconds = parseInt(totalSeconds, 10);
         totalSeconds = totalSeconds * 3;
 
@@ -235,9 +235,9 @@ $(document).ready(function () {
     $(".airbrake-setandrelease-test-set").click(function () {
 
         $(".airbrake-setandrelease-test-set").hide();
-        disable($("#airbrake-setandrelease-test-car-count"));
+        disable($("#car-count"));
 
-        var totalSeconds = $("#airbrake-setandrelease-test-car-count").val();
+        var totalSeconds = $("#car-count").val();
         totalSeconds = parseInt(totalSeconds, 10);
         totalSeconds = totalSeconds/5;
         totalSeconds = Math.ceil(totalSeconds);
@@ -285,7 +285,7 @@ $(document).ready(function () {
 
 
         $(".airbrake-setandrelease-test-inspect").hide();
-        var carsToInspect = $("#airbrake-setandrelease-test-car-count").val();
+        var carsToInspect = $("#car-count").val();
         var totalSeconds = parseInt(carsToInspect, 10);
         totalSeconds = totalSeconds * 4;
 
@@ -369,7 +369,7 @@ $(document).ready(function () {
     $(".airbrake-setandrelease-test-inspect-return").click(function () {
 
         $(".airbrake-setandrelease-test-inspect-return").hide();
-        var carsToInspect = $("#airbrake-setandrelease-test-car-count").val();
+        var carsToInspect = $("#car-count").val();
         var totalSeconds = parseInt(carsToInspect, 10);
         totalSeconds = totalSeconds * 2;
 

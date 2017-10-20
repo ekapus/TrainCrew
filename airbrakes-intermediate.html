@@ -109,8 +109,22 @@
       </li>
       <li class="list-group-item step step-3">
         <p>Confirm pressure at the end of the trainline.</p>
-        <button type="button" class="btn btn-lg btn-default airbrake-intermediate-test-confirm  step-3-button">Confirm Pressure</button>
-        <div class="alert airbrake-intermediate-test-confirm-badge step-2-badge"></div>
+        <button type="button" class="btn btn-lg btn-default airbrake-intermediate-test-confirm step-3-button">Confirm Pressure</button>
+        <div class="alert airbrake-intermediate-test-confirm-badge step-3-badge"></div>
+      </li>
+      <li class="list-group-item step step-3-fail">
+        <p>Air line pressure drop too great. Walk the train and inspect for defective car.</p>
+        <button type="button" class="btn btn-lg btn-default airbrake-initial-test-confirm-inspect step-3-fail-button">Inspect</button>
+        <div class="progress airbrake-initial-test-confirm-inspect-progress step-3-fail-progress hidden">
+          <div class="progress-bar airbrake-initial-test-confirm-inspect-progress-bar step-3-fail-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+            aria-valuemax="100" style="min-width: 5em;">
+            0 Cars
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item step step-3-resolve">
+        <p>Set car out and begin test again.</p>
+        <button type="button" class="btn btn-lg btn-default airbrake-initial-test-confirm-resolve step-3-resolve-button restart-button">Restart Test</button>
       </li>
       <li class="list-group-item step step-4">
         <p>Visually inspect all brakes for application.</p>
@@ -163,6 +177,11 @@
 $(document).ready(function () {
     $(".step").hide();
     $(".step-1").show();
+    
+    
+    $(".step-3-badge").hide();
+    $(".step-5-badge").hide();
+
 
     $(".restart-button").click(function () {
       window.location.reload();
@@ -238,7 +257,9 @@ $(document).ready(function () {
   $(".step-2-button").click(function () {
     
             $(".step-2-button").hide();
+            $(".step-2-badge").hide();
     
+
             // Determine test time length
             var totalSeconds = 15; 
             // totalSeconds = 1; // Go quick, for testing;
@@ -247,7 +268,7 @@ $(document).ready(function () {
             var failureChance = generateRandomNumber(0, .1); // decimal (.0 - 1.0) chance pressure will be too low
             // failureChance = .1; // Train will not hold air, this is not a likely condition
             // failureChance = 0; // Never fail, for testing
-             failureChance = 1; // Always fail, for testing
+            // failureChance = 1; // Always fail, for testing
             console.log("-------------------")
             console.log("Step 2: Set and hold for 1 minute")
     
@@ -402,9 +423,55 @@ $(document).ready(function () {
         });
 
 
-    $(".airbrake-intermediate-test-inspect").click(function () {
+        $(".step-3-button").click(function () {
+          
+                  // Air pressure at rear must be within 5lbs of the head end after 60 seconds.
+                  console.log("-------------------")
+                  console.log("Step 3: Air pressure at rear must be within 5lbs of the head end after 60 seconds.")
+          
+                  $(".step-3-button").hide();
+                  
+          
+                  var failureChance = generateRandomNumber(0, .1); // decimal (.0 - 1.0) chance pressure will be too low
+                  // failureChance = .1; // Train will not hold air, this is a slightly more likely condition
+                  // failureChance = 0; // Never fail, for testing
+                  // failureChance = 1; // Always fail, for testing
+                  
+                  pressureModifier = 0;
+                  if(decideFailure(failureChance)){
+                    pressureModifier = Math.round(generateRandomNumber(5, 40));
+                    console.log("Step 3: Failure decided");
+                    console.log("Step 3: failureChance="+ failureChance);
+                    console.log("Step 3: pressureModifier= "+ pressureModifier);
+                  }
+          
+                  maxBrakePipePressure = brakePipePressure;
+                  brakePipePressure = brakePipePressure - Math.round(generateRandomNumber(1, 4));
+                  brakePipePressure = brakePipePressure - pressureModifier;
+          
+                  if(brakePipePressure >= (maxBrakePipePressure-5)){
+                    // Good news! We held air.
+                    $(".step-3-badge").addClass("alert-success");
+                    $(".step-3-badge").text(brakePipePressure + " PSI");
+                    $(".step-3-badge").show();
+                    $(".step-4").show();
+                } else {
+                    // Bad News: we couldn't hold air. Time to walk the train.
+                    $(".step-3-badge").addClass("alert-danger");
+                    $(".step-3-badge").text(brakePipePressure + " PSI - TOO LOW" );
+                    $(".step-3-badge").show();
+                    $(".step-3-fail").show();
+                }
+                  
+                console.log("Step 3: Complete");
+              });
 
-        $(".airbrake-intermediate-test-inspect").hide();
+              $(".step-3-fail-button").click(function () {
+
+        console.log("Step 3 Failure State: Too much of a pressure drop");
+
+        // $(".airbrake-initial-test-inspect").hide();
+        $(".step-3-fail-button").hide();
         var carsToInspect = $("#car-count").val();
         var totalSeconds = parseInt(carsToInspect, 10);
         totalSeconds = totalSeconds * 4;
@@ -412,38 +479,72 @@ $(document).ready(function () {
         carsPerSecond = carsToInspect / totalSeconds;
         percentPerSecond = 100 / totalSeconds;
 
-        $(".airbrake-intermediate-test-inspect-progress").show();
-        $(".airbrake-intermediate-test-inspect-progress").removeClass("hidden");
+        $(".step-3-fail-progress").show();
+        $(".step-3-fail-progress").removeClass("hidden");
 
         carSuffix = "";
 
+        // Which car is leaking?
+        var defectCar = Math.round(generateRandomNumber(1, carsToInspect));
+        console.log("Step 3 Failure State: defectCar=" + defectCar);
+
         var carsInspected = 0;
         var secondsElapsed = 0;
+        var progressBar = $('.step-3-fail-progress-bar');
+        var failureCauses = [
+                    'Damaged air hose',
+                    'Leaking brake pipe',
+                    'Leaking brake cylinder',
+                    'Leaking reservoir',
+                    'Unidentified air leak'
+                  ];
+        var defectCode = Math.floor(Math.random()*failureCauses.length);
+        var defectType = failureCauses[defectCode];
+        console.log("Step 3 Failure State: defectCode=" + defectCode);
+        console.log("Step 3 Failure State: defectType=" + defectType);
+
         var countDown = new Countdown({
             seconds: parseInt(totalSeconds),  // number of seconds to count down
             onUpdateStatus: function (sec) {
                 secondsElapsed++;
-                var progressBar = $('.airbrake-intermediate-test-inspect-progress-bar')
+                
                 var percentComplete = secondsElapsed * percentPerSecond;
-                progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
-                var carsInspectedText = Math.floor(carsInspected);
-                if (carsInspectedText == 1) {
-                  carSuffix = "";
+                if(defectCar == Math.floor(carsInspected)){ 
+                  progressBar.css('width', '100%').attr('aria-valuenow', 100);
+                  progressBar.text(defectType + " on car " + defectCar + ". Set car out.");
+                  progressBar.addClass("progress-bar-warning");
+                  $(".step-3-resolve").show();
+                  $(".airbrake-initial-test-set-inspect").hide();
                 } else {
-                  carSuffix = "s";
-                }
-                progressBar.text(carsInspectedText + " Car" + carSuffix);
-                carsInspected = carsInspected + .25;
+                  progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
+                  var carsInspectedText = Math.floor(carsInspected);
+                  if (carsInspectedText == 1) {
+                    carSuffix = "";
+                  } else {
+                    carSuffix = "s";
+                  }
+                  progressBar.text(carsInspectedText + " Car" + carSuffix);
+                  carsInspected = carsInspected + .25;
+              }
             }, // callback for each second
             onCounterEnd: function () {
-                var progressBar = $('.airbrake-intermediate-test-inspect-progress-bar')
-                progressBar.css('width', '100%').attr('aria-valuenow', 100);
-                progressBar.text(carsToInspect + " Car" + carSuffix);
-                progressBar.addClass("progress-bar-success");
-                $(".step-5").show();
+                if(defectCar == Math.floor(carsInspected)){ 
+                  progressBar.css('width', '100%').attr('aria-valuenow', 100);
+                  progressBar.text(defectType + " on car " + defectCar + ". Set car out.");
+                  progressBar.addClass("progress-bar-warning");
+                  $(".step-3-resolve").show();
+                  $(".airbrake-initial-test-set-inspect").hide();
+
+                } else {
+                  progressBar.css('width', '100%').attr('aria-valuenow', 100);
+                  progressBar.text(carsToInspect + " Car" + carSuffix);
+                  progressBar.addClass("progress-bar-success");
+                  $(".step-4").show();
+                }
             } // final action
         });
         countDown.start();
+        console.log("Step 3 Failure State: Complete");
     });
 
     $(".airbrake-intermediate-test-release").click(function () {

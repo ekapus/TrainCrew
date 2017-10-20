@@ -76,9 +76,9 @@
         <p>Cannot hold air. Walk the train and inspect for defective car.</p>
         
         <div class="train-length-form">
-        <label for="airbrake-continuity-test-car-count">Train Length</label>
+        <label for="car-count">Train Length</label>
         <div class="input-group input-group-lg col-xs-7">
-          <input name="airbrake-continuity-test-car-count" type="number" id="airbrake-continuity-test-car-count" class="form-control airbrake-continuity-test-car-count"
+          <input name="car-count" type="number" id="car-count" class="form-control car-count"
             placeholder="number" aria-describedby="number-of-cars">
           <span class="input-group-addon" id="number-of-cars">cars</span>
         </div>
@@ -204,7 +204,7 @@ $(document).ready(function () {
         $(".step-1-fail-button").hide();
         $(".train-length-form").hide();
 
-        var carsToInspect = $("#airbrake-continuity-test-car-count").val();
+        var carsToInspect = $("#car-count").val();
         var totalSeconds = parseInt(carsToInspect, 10);
         totalSeconds = totalSeconds * 4;
 

@@ -73,9 +73,9 @@
 
       <li class="list-group-item step step-1 ">
         <p>Step 1: Fully Charge the trainline. (3 seconds per car.)</p>
-        <label for="airbrake-initial-test-car-count">Train Length</label>
+        <label for="car-count">Train Length</label>
         <div class="input-group input-group-lg col-xs-7">
-          <input name="airbrake-initial-test-car-count" type="number" id="airbrake-initial-test-car-count" class="form-control airbrake-initial-test-car-count"
+          <input name="car-count" type="number" id="car-count" class="form-control car-count"
             placeholder="number" aria-describedby="number-of-cars">
           <span class="input-group-addon" id="number-of-cars">cars</span>
         </div>
@@ -169,7 +169,6 @@
         <button type="button" class="btn btn-lg btn-default airbrake-initial-test-release step-5-button">Release</button>
         <div class="alert airbrake-initial-test-release-badge step-5-badge"></div>
       </li>
-
 <!-- /Step 5 -->
 
 
@@ -237,8 +236,8 @@ $(document).ready(function () {
       window.location.reload();
     });
 
-    $(".airbrake-initial-test-car-count").on("change keyup paste", function () {
-        var val = $("#airbrake-initial-test-car-count").val();
+    $(".car-count").on("change keyup paste", function () {
+        var val = $("#car-count").val();
         if (!isNaN(val)) {
             enable($(".airbrake-initial-test-charge"));
         } else {
@@ -255,9 +254,9 @@ $(document).ready(function () {
   
     $(".step-1-button").click(function () {
 
-        disable($("#airbrake-initial-test-car-count"));
+        disable($("#car-count"));
 
-        var totalSeconds = $("#airbrake-initial-test-car-count").val();
+        var totalSeconds = $("#car-count").val();
         totalSeconds = parseInt(totalSeconds, 10);
         totalSeconds = totalSeconds * 3;
 
@@ -309,7 +308,7 @@ $(document).ready(function () {
 
     $(".step-2-button").click(function () {
 
-        $(".airbrake-initial-test-set").hide();
+        $(".step-2-button").hide();
 
         // Determine test time length
         var totalSeconds = 15; 
@@ -356,17 +355,16 @@ $(document).ready(function () {
 
         // Run the test
         var secondsElapsed = 0;
+        var progressBar = $('.step-2-progress-bar');
         var countDown = new Countdown({
             seconds: parseInt(totalSeconds),  // number of seconds to count down
             onUpdateStatus: function (sec) {
-                var progressBar = $('.step-2-progress-bar')
                 var percentComplete = secondsElapsed * (percentPerSecond);
                 secondsElapsed++;
                 progressBar.css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
                 progressBar.text(secondsElapsed);
             }, // callback for each second
             onCounterEnd: function () {
-                var progressBar = $('.step-2-progress-bar')
                 progressBar.css('width', '100% Complete').attr('aria-valuenow', 100);
                 // Determine if the test failed
                 if(finalBrakePipePressure >= safeBrakePipePressure){
@@ -398,7 +396,7 @@ $(document).ready(function () {
 
         $(".airbrake-initial-test-inspect").hide();
         $(".step-2-fail-button").hide();
-        var carsToInspect = $("#airbrake-initial-test-car-count").val();
+        var carsToInspect = $("#car-count").val();
         var totalSeconds = parseInt(carsToInspect, 10);
         totalSeconds = totalSeconds * 4;
 
@@ -525,7 +523,7 @@ $(document).ready(function () {
 
         // $(".airbrake-initial-test-inspect").hide();
         $(".step-3-fail-button").hide();
-        var carsToInspect = $("#airbrake-initial-test-car-count").val();
+        var carsToInspect = $("#car-count").val();
         var totalSeconds = parseInt(carsToInspect, 10);
         totalSeconds = totalSeconds * 4;
 
@@ -607,7 +605,7 @@ $(document).ready(function () {
 
 
         $(".airbrake-initial-test-inspect").hide();
-        var carsToInspect = $("#airbrake-initial-test-car-count").val();
+        var carsToInspect = $("#car-count").val();
         var totalSeconds = parseInt(carsToInspect, 10);
         totalSeconds = totalSeconds * 4;
 
@@ -703,7 +701,7 @@ $(document).ready(function () {
         console.log("Step 6: Inspect brake release");
 
         $(".step-6-button").hide();
-        var carsToInspect = $("#airbrake-initial-test-car-count").val();
+        var carsToInspect = $("#car-count").val();
         var totalSeconds = parseInt(carsToInspect, 10);
         totalSeconds = totalSeconds * 4;
 
