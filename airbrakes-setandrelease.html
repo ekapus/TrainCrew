@@ -278,7 +278,7 @@ $(document).ready(function () {
          
          var defectCar = 0;
          if(decideFailure(failureChance)){
-          defectCar = Math.round(generateRandomNumber(1, carsToInspect));
+          defectCar = Math.round(generateRandomNumber(1, carCount));
           console.log("Step 3: Failure decided");
           console.log("Step 3: failureChance="+ failureChance);
           console.log("Step 3: defectCar= "+ defectCar);
