@@ -1,5 +1,11 @@
+// Make computations based on settings from config.js
+var FAST_CLOCK_FACTOR = (1/FAST_CLOCK_SPEED);
+
+
 $(document).ready(function () {
     $(".hidden").hide();
+    for (var i = 0; i <= 120; i++)
+    $("span.fast-clock-"+i).text(FAST_CLOCK_FACTOR*i);    
 });
 
 function PlaySound(soundFile) {
@@ -116,5 +122,3 @@ function decideFailure(chance){
   }
 
 
-// Make computations based on settings from config.js
-var FAST_CLOCK_FACTOR = (1/FAST_CLOCK_SPEED);
