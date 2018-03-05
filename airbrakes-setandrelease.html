@@ -180,7 +180,7 @@ $(document).ready(function () {
         $(".airbrake-setandrelease-test-charge-progress").show();
         $(".airbrake-setandrelease-test-charge-progress").removeClass("hidden");
 
-        var compressorRunAudio = new Audio("sounds/compressor-run.wav");
+        var compressorRunAudio = new Audio("sounds/compressor-run.mp3");
         compressorRunAudio.loop = true;
         compressorRunAudio.play();
 
@@ -200,7 +200,7 @@ $(document).ready(function () {
                 progressBar.text(maxBrakePipePressure + " PSI");
                 progressBar.addClass("progress-bar-success");
                 $(".step-2").show();
-                PlaySound("sounds/compressor-end.wav");
+                PlaySound("sounds/compressor-end.mp3");
                 compressorRunAudio.pause();
                 
             } // final action
@@ -230,7 +230,7 @@ $(document).ready(function () {
         $(".step-2-progress").show();
         $(".step-2-progress").removeClass("hidden");
 
-        PlaySound("sounds/air-purge-4.wav");
+        PlaySound("sounds/air-purge-4.mp3");
 
         var secondsElapsed = 0;
         var countDown = new Countdown({

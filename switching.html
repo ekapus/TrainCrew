@@ -22,6 +22,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+    .handbrake-test-badge-failure{
+      overflow: auto;
+      display:block;
+    }
+    </style>
 </head>
 
 <body>
@@ -84,7 +90,13 @@
           <span class="badge countdown-badge handbrake-set-badge">9</span>
           Set Handbrakes
         </button>
-        
+      </li>
+      <li class="list-group-item">
+        <button type="button" class="btn btn-lg btn-default handbrake-test handbrake-test-button">
+          <span class="badge countdown-badge handbrake-test-badge">5</span>
+          Test Handbrakes
+          <div class="handbrake-test-badge-failure xs-12"></div>
+        </button>
       </li>
       <li class="list-group-item">
         <button type="button" class="btn btn-lg btn-default handbrake-release handbrake-release-button">
@@ -94,6 +106,14 @@
         
       </li>
     </ul>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <button type="button" class="btn btn-lg btn-default unlock-switch unlock-switch-button">
+          <span class="badge countdown-badge unlock-switch-badge">6</span>
+          Unlock Switch
+        </button>
+      </li>
+      </ul>
     <ul class="nav nav-pills">
       <li class="nav-item">
         <a class="nav-link" href="airbrakes.html">Switching Complete? Perform Airbrake Tests.</a>
@@ -118,14 +138,14 @@
     $(document).ready(function () {
 
     $(".uncouple-button").click(function () {
-        var soundFile = "sounds/air-hose-disconnect.wav";
+        var soundFile = "sounds/air-hose-disconnect.mp3";
         var soundDuration = 2;
         var badgeClass = ".uncouple-badge";
         PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
     });
 
     $(".airhose-connect-button").click(function () {
-        var soundFile = "sounds/coupler.wav";
+        var soundFile = "sounds/coupler.mp3";
         var soundDuration = 5;
         var badgeClass = ".airhose-connect-badge";
         PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
@@ -138,12 +158,35 @@
         PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
     });
 
+    $(".handbrake-test-button").click(function () {
+        var soundFile = "sounds/brake-wheel-set.mp3";
+        var soundDuration = 1;
+        var badgeClass = ".handbrake-test-badge";
+        var statusElement = $('.handbrake-test-button');
+        var failureCauses = [
+                    'Applied handbrakes did not hold. Set more and re-test.'
+                  ];
+        var failure = PlaySoundWithCountdownAndFailure(soundFile, soundDuration, badgeClass, MAX_HANDBRAKE_FAILURE_RATE, statusElement, failureCauses, false);
+        if(failure){
+          disable($(".handbrake-test-button"));
+        }
+    });
+
     $(".handbrake-set-button").click(function () {
         var soundFile = "sounds/brake-wheel-set.mp3";
         var soundDuration = 9;
         var badgeClass = ".handbrake-set-badge";
         PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
     });
+
+$(".unlock-switch-button").click(function () {
+        var soundFile = "sounds/switch-lock-unlock.mp3";
+        var soundDuration = 6;
+        var badgeClass = ".unlock-switch-badge";
+        PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
+    });
+
+    // switch-lock-unlock.mp3
 
 });
 </script>

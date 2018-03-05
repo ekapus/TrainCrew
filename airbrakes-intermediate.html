@@ -219,7 +219,7 @@ $(document).ready(function () {
         $(".step-1-progress").show();
         $(".step-1-progress").removeClass("hidden");
 
-        var compressorRunAudio = new Audio("sounds/compressor-run.wav");
+        var compressorRunAudio = new Audio("sounds/compressor-run.mp3");
         compressorRunAudio.loop = true;
         compressorRunAudio.play();
 
@@ -238,7 +238,7 @@ $(document).ready(function () {
                 progressBar.text(maxBrakePipePressure + " PSI");
                 progressBar.addClass("progress-bar-success");
                 compressorRunAudio.pause();   
-                PlaySound("sounds/compressor-end.wav");             
+                PlaySound("sounds/compressor-end.mp3");             
                 $(".step-2").show();
             } // final action
         });
@@ -296,7 +296,7 @@ $(document).ready(function () {
             // Show the progress of the test
             $(".step-2-progress").show();
             $(".step-2-progress").removeClass("hidden");
-            PlaySound("sounds/air-purge-4.wav");
+            PlaySound("sounds/air-purge-4.mp3");
     
             // Run the test
             var secondsElapsed = 0;
@@ -547,7 +547,7 @@ $(document).ready(function () {
     $(".airbrake-intermediate-test-release").click(function () {
 
         $(".airbrake-intermediate-test-release").hide();
-        PlaySound("sounds/bleedoff.wav");
+        PlaySound("sounds/bleedoff.mp3");
         $(".airbrake-intermediate-test-release-badge").addClass("alert-success");
         $(".airbrake-intermediate-test-release-badge").text("Brakes Released");
         $(".airbrake-intermediate-test-release-badge").show();
