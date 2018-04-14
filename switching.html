@@ -113,6 +113,22 @@
           Unlock Switch
         </button>
       </li>
+      <li class="list-group-item">
+        <button type="button" class="btn btn-lg btn-default lock-switch lock-switch-button">
+          <span class="badge countdown-badge lock-switch-badge">2</span>
+          Lock Switch
+        </button>
+      </li>
+      <li class="list-group-item">
+        <button type="button" class="btn btn-lg btn-default remove-derail remove-derail-button">
+          <span class="badge countdown-badge remove-derail-badge">10</span>
+          Remove Derail
+        </button>
+        <button type="button" class="btn btn-lg btn-default restore-derail restore-derail-button">
+          <span class="badge countdown-badge restore-derail-badge">5</span>
+          Restore Derail
+        </button>
+      </li>
       </ul>
     <ul class="nav nav-pills">
       <li class="nav-item">
@@ -185,6 +201,27 @@ $(".unlock-switch-button").click(function () {
         var badgeClass = ".unlock-switch-badge";
         PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
     });
+
+$(".lock-switch-button").click(function () {
+        var soundFile = "sounds/Switch-lever.mp3";
+        var soundDuration = 1;
+        var badgeClass = ".lock-switch-badge";
+        PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
+    });
+
+$(".remove-derail-button").click(function () {
+        var soundFile = "sounds/switch-lock-unlock.mp3";
+        var soundDuration = 6;
+        var badgeClass = ".remove-derail-badge";
+        PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
+    });
+    $(".restore-derail-button").click(function () {
+      var soundFile = "sounds/Switch-lever.mp3";
+        var soundDuration = 6;
+        var badgeClass = ".restore-derail-badge";
+        PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
+    });
+
 
     // switch-lock-unlock.mp3
 
