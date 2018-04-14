@@ -32,13 +32,13 @@ div.body-container {
 }
 
 
-.airbrake-initial-test-charge, .airbrake-continuity-test-charge {
+.airbrake-initial-test-charge, .airbrake-continuity-test-charge, .charge-trainline-charge {
     margin-top: 1em;
 }
-.airbrake-initial-test-charge-progress, .airbrake-continuity-test-charge-progress {
+.airbrake-initial-test-charge-progress, .airbrake-continuity-test-charge-progress, .charge-trainline-charge-progress {
     margin-top: 1em;
 }
-.airbrake-initial-test-confirm-badge, .airbrake-continuity-test-confirm-badge {
+.airbrake-initial-test-confirm-badge, .airbrake-continuity-test-confirm-badge, .charge-trainline-confirm-badge {
     margin-top: 1em;
 }
 
