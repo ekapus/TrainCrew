@@ -64,7 +64,7 @@ div.body-container {
     float:right;
 }
 
-li.list-group-item button{
+li.list-group-item button, li.list-group-item a.btn{
 width:100%;
 text-align:left;
 vertical-align: middle;
@@ -99,4 +99,8 @@ button.btn span.badge-info {
 
 button.btn span.badge-inverse {
   background-color: #333333;
+}
+
+ol.inspection-list {
+    margin-bottom:1em;
 }

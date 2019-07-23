@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Switching - Car Inspection</title>
+
+  <meta property="og:title" content="TrainCrew Webapp: Switching - Car Inspection" />
+  <meta property="og:description" content="Inspect cars before picking them up." />
+  <meta property="og:type" content="website" />
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/site.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="/index.html">TrainCrew</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/index.html">Home</a></li>
+          <li class="active"><a href="switching.html">Switching</a></li>
+          <li><a href="handbrakes.html">Handbrakes</a></li>
+          <li><a href="airbrakes.html">Airbrakes</a></li>
+          <li><a href="locomotive.html">Locomotives</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="about.html">About</a></li>
+        </ul>
+
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container body-container">
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <h1>Car Inspection</h1>
+    <div class="well">
+      <p>Perform an inspection on both sides of a car prior to accepting it.</p>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item">
+          <p>Inspect the carbody for the following:</p>
+          <ol class="inspection-list">
+          <li>Carbody leaning or listing to side.</li> 
+          <li>Carbody sagging downward.</li>
+              <li>Carbody positioned improperly on truck.</li> 
+              <li>Object dragging below car.</li>
+              <li>Object extending from side of car.</li> 
+              <li>Door or hatch insecurely attached to car.</li>
+              <li>Broken or missing safety appliance.</li>
+              <li>Lading leaking from a placarded hazardous material car.</li>
+        </ol>
+        <button type="button" class="btn btn-lg btn-default inspection car-inspection-button action-button" id="car-inspection-button-step-1" name="Car Inspection: Carbody">
+                <span class="badge countdown-badge car-inspection-badge" id="car-inspection-badge-step-1">5</span>
+          Inspect
+        </button>
+      </li>
+      <li class="list-group-item">
+          <p>Inspect the coupler and draft gear for damage or defects.</p>
+        <button type="button" class="btn btn-lg btn-default inspection car-inspection-button action-button" id="car-inspection-button-step-2" name="Car Inspection: Carbody">
+                <span class="badge countdown-badge car-inspection-badge" id="car-inspection-badge-step-2">5</span>
+          Inspect
+        </button>
+      </li>
+      <li class="list-group-item">
+          <p>Inspect the wheels and journals for overheating or evidence of overheating.</p>
+        <button type="button" class="btn btn-lg btn-default inspection car-inspection-button action-button" id="car-inspection-button-step-3" name="Car Inspection: Carbody">
+                <span class="badge countdown-badge car-inspection-badge" id="car-inspection-badge-step-3">5</span>
+          Inspect
+        </button>
+      </li>
+      <li class="list-group-item">
+          <p>Inspect the wheels looking for cracks.</p>
+        <button type="button" class="btn btn-lg btn-default inspection car-inspection-button action-button" id="car-inspection-button-step-4" name="Car Inspection: Carbody">
+                <span class="badge countdown-badge car-inspection-badge" id="car-inspection-badge-step-4">5</span>
+          Inspect
+        </button>
+      </li>
+      <li class="list-group-item">
+          <p>Ensure that brakes do not stick on or off.</p>
+        <button type="button" class="btn btn-lg btn-default inspection car-inspection-button action-button" id="car-inspection-button-step-5" name="Car Inspection: Carbody">
+                <span class="badge countdown-badge car-inspection-badge" id="car-inspection-badge-step-5">5</span>
+          Inspect
+        </button>
+      </li>
+
+      </ul>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="switching.html">Inspection Complete? Go back to switching operations.</a>
+      </li>
+    </ul>
+    <hr />
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="/index.html">Home</a>
+      </li>
+
+
+  </div>
+  <!-- /container -->
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/site.js"></script>
+
+  <script>
+        $(document).ready(function () {
+      
+          $(".car-inspection-button").click(function () {
+              var buttonID = $(this).attr('id');
+              var button = $("#" + buttonID);
+              var badgeID = "#" + buttonID.replace("button", "badge");
+              var seconds = parseInt($(badgeID).text());
+              disable(button);
+              $(badgeID).addClass("btn-warning");
+              var countDown = new Countdown({
+                  seconds: seconds,  // number of seconds to count down
+                  onUpdateStatus: function (sec) {
+                      $(badgeID).text(sec);
+                  }, // callback for each second
+                  onCounterEnd: function () {
+                      badge = $(badgeID);
+                      badge.removeClass("btn-warning");
+                      inspectionPassed = passedInspection();
+                      if (inspectionPassed) {
+                          badge.addClass("btn-success");
+                          button.addClass("btn-success");
+                          button.text("Inspection Passed");
+                      } else {
+                          badge.addClass("btn-danger");
+                          button.addClass("btn-danger");
+                          button.text("Inspection failed: Set car out & call car inspector.");
+                      }
+                  } // final action
+              });
+              countDown.start();
+          });
+      
+      });
+      </script>
+      </body>
+      
+      </html>
