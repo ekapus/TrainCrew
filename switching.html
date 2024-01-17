@@ -129,15 +129,25 @@
           Restore Derail
         </button>
       </li>
-      </ul>
-      <ul class="list-group">
-          <li class="list-group-item">
-            <a  class="btn btn-lg btn-default" href="switching-carinspection.html">
-              Perform a car inspection.
-            </a>
-          </li>
-      </ul>
-  
+    </ul>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <button type="button" class="btn btn-lg btn-default coffeebreak coffee-break-button action-button"
+          name="Coffee Break">
+          <span class="badge countdown-badge coffee-break-badge">7</span>
+          Go for coffee
+        </button>
+      </li>
+    </ul>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a class="btn btn-lg btn-default" href="switching-carinspection.html">
+          Perform a car inspection.
+        </a>
+      </li>
+    </ul>
+
     <ul class="nav nav-pills">
       <li class="nav-item">
         <a class="nav-link" href="airbrakes.html">Switching Complete? Perform Airbrake Tests or Charge Train.</a>
@@ -223,17 +233,19 @@ $(".remove-derail-button").click(function () {
         var badgeClass = ".remove-derail-badge";
         PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
     });
-    $(".restore-derail-button").click(function () {
+$(".restore-derail-button").click(function () {
       var soundFile = "sounds/Switch-lever.mp3";
         var soundDuration = 6;
         var badgeClass = ".restore-derail-badge";
         PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
+      });
+$(".coffee-break-button").click(function () {
+        var soundFile = "sounds/coffee-break.mp3";
+        var soundDuration = 6;
+        var badgeClass = ".coffee-break-badge";
+        PlaySoundWithCountdown(soundFile, soundDuration, badgeClass);
+      });
     });
-
-
-    // switch-lock-unlock.mp3
-
-});
 </script>
 </body>
 
