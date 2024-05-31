@@ -104,3 +104,11 @@ button.btn span.badge-inverse {
 ol.inspection-list {
     margin-bottom:1em;
 }
+
+.body-container ul.nav{
+	margin-bottom:2em;
+}
+
+.homepage-buttons li{
+	font-size:24px;
+}
